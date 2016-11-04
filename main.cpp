@@ -3,6 +3,7 @@
 #include<cmath>
 #include<string>
 using namespace std;
+//重载输出
 ostream& operator<< (ostream& out, vector<int>& vec) {
         vector<int>::reverse_iterator it = vec.rbegin();
         for(;it!=vec.rend();++it)if(*it !=0)break;
@@ -11,6 +12,7 @@ ostream& operator<< (ostream& out, vector<int>& vec) {
         out<<endl;
         return out;
 }
+//保证长度为2^n
 vector<int> correct(vector<int>&vec){
         int len = vec.size(),t=0;
         for(int i=0;i<len;i++)if(vec[i]==0)t++;
@@ -26,6 +28,7 @@ vector<int> correct(vector<int>&vec){
         }
         return vec;
 }
+//重载输入
 istream& operator >> (istream & in, vector<int>& vec){
        string s;
        in>>s;
@@ -34,6 +37,7 @@ istream& operator >> (istream & in, vector<int>& vec){
        correct(vec);
        return in;
 }
+//  将vec左移m位（比如十进制数23左移2位得到2300）
 vector<int> shift (vector<int> &vec, int m){
          vector<int>res;
          while(m--)res.push_back(0);
@@ -41,7 +45,7 @@ vector<int> shift (vector<int> &vec, int m){
           for(;it!=vec.end();it++)res.push_back(*it);
          return res;
 }
-
+//重载加法
 vector<int> operator + (vector<int>& a, vector<int>& b){
         vector<int> c;
         int lena = a.size(), lenb = b.size(), k=0,m,n;
@@ -63,6 +67,7 @@ vector<int> operator + (vector<int>& a, vector<int>& b){
         }
         return correct(c);
 }
+//重载比较运算符
 bool operator < (vector<int> &a, vector<int> &b){
         int lena = a.size(), lenb = b.size();
         if(lena==lenb){
@@ -74,6 +79,7 @@ bool operator < (vector<int> &a, vector<int> &b){
              return lena<lenb;
         }
 }
+//重载减法
 vector<int> operator - (vector<int>& a, vector<int>& b){
 //a>b
        vector<int> c;
@@ -93,6 +99,7 @@ vector<int> operator - (vector<int>& a, vector<int>& b){
        }
        return correct(c);
 }
+//拷贝子数组
 vector<int> copy(vector<int>&vec, int start, int length){
         vector<int> res;
         vector<int>::iterator it = vec.begin() + start;
@@ -101,6 +108,7 @@ vector<int> copy(vector<int>&vec, int start, int length){
         }
         return res;
 }
+//分治求大整数
 vector<int> DivideAndConque(vector<int> &a, vector<int>&b){
        int lena = a.size(), lenb = b.size();
        if(lena!=lenb){
